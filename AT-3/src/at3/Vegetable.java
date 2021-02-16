@@ -35,7 +35,13 @@ public class Vegetable {
         double result = (energyDensity * weight) / 100;
         return result;
     }
-
+    public boolean equals(Vegetable v) {
+        if(this == v || (this.getWeight() == v.getWeight()) && this.getName() == v.getName() && this.getColor() == v.getColor())  {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static Comparator<Vegetable> vegWeightComparatorAsc = new Comparator<Vegetable>() {
 

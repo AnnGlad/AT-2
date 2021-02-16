@@ -37,4 +37,12 @@ public class Chef {
         return sumCalories(s);
     }
 
+    public static void CompareTwoVegetables(Vegetable v1, Vegetable v2) {
+        if(v1.equals(v2)) {
+            System.out.println("These vegetables are the same");
+        } else {
+            System.out.println("These vegetables are not equal");
+        }
+    }
+
 }

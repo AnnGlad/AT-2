@@ -5,7 +5,7 @@ public class Demo {
     public static void main(String[] args) {
 
         Tomato t1 = new Tomato(220);
-        Tomato t2 = new Tomato(145);
+        Tomato t2 = new Tomato(100);
         Cucumber c1 = new Cucumber(100);
         Broccoli b1 = new Broccoli(400.5);
         Salad s1  = new Salad();
@@ -18,6 +18,6 @@ public class Demo {
         System.out.println("===");
         Chef.sortingByCals(s1, false);
         Chef.sortingByCals(s1, true);
-
+        Chef.CompareTwoVegetables(c1, t2);
     }
 }
