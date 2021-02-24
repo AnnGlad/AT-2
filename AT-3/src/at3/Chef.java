@@ -22,26 +22,49 @@ public class Chef {
         s.printIngredients();
     }
 
-    public static void sortingByWeight(Salad s, boolean order) {
-        System.out.println("Ingredients sorted by weight:");
+    public static void sortingByWeight(Salad s, SortingOrder order) {
+        String sortedBy = order == SortingOrder.ASC ? "ascending" : "descending";
+        System.out.println("Ingredients sorted by weight in " + sortedBy + " order:");
         s.sortByWeight(order);
     }
 
-    public static void sortingByCals(Salad s, boolean order) {
-        System.out.println("Ingredients sorted by calories:");
+    public static void sortingByCals(Salad s, SortingOrder order) {
+        String sortedBy = order == SortingOrder.ASC ? "ascending" : "descending";
+        System.out.println("Ingredients sorted by calories in " + sortedBy + " order:");
         s.sortByCalories(order);
     }
 
-    public static double calcCals(Salad s) {
+    public static void calcCals(Salad s) {
         System.out.println("Sum of calories in your salad: " + sumCalories(s));
-        return sumCalories(s);
     }
 
-    public static void CompareTwoVegetables(Vegetable v1, Vegetable v2) {
+    public static void compareTwoVegetables(Vegetable v1, Vegetable v2) {
         if(v1.equals(v2)) {
-            System.out.println("These vegetables are the same");
+            System.out.println("Vegetables " + v1.toString() + " and " + v2.toString() +" are the same");
         } else {
-            System.out.println("These vegetables are not equal");
+            System.out.println("Vegetables " + v1.toString() + " and " + v2.toString() +" are not equal");
+        }
+    }
+
+    public static void showIngredientsByColor(Salad s, String color) {
+        if(!s.findIngredientsByColor(color).isEmpty()) {
+            System.out.println("These vegetables are " + color + ":");
+            for (Vegetable carVal : s.findIngredientsByColor(color)) {
+                System.out.println(carVal.toString());
+            }
+        } else {
+            System.out.println("Sorry, we can not find vegetables with " + color + " color in the salad");
+        }
+    }
+
+    public static void showIngredientsWithinRange(Salad s, int val1, int val2) {
+        if(!s.findIngredientsWithinRange(val1, val2).isEmpty()) {
+            System.out.println("These vegetables are within weight range from " + val1 + " to " + val2 + ":");
+            for (Vegetable carVal : s.findIngredientsWithinRange(val1, val2)) {
+                System.out.println(carVal.toString());
+            }
+        } else {
+            System.out.println("Sorry, we can not find vegetables within weight range from " + val1 + " to " + val2);
         }
     }
 

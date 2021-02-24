@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Salad {
-    private ArrayList<Vegetable> ingredients;
+    private final ArrayList<Vegetable> ingredients;
 
     Salad() {
-        ingredients = new ArrayList<Vegetable>();
+        ingredients = new ArrayList<>();
+    }
+
+    public boolean isEmpty() {
+        if(ingredients.size() > 0) {
+            return false;
+        } else {
+            return  true;
+        }
     }
 
     public Salad add(Vegetable v) {
@@ -29,36 +37,49 @@ public class Salad {
     }
 
     public void printIngredients() {
-
         for (Vegetable curVal : ingredients) {
             System.out.println(curVal.toString());
         }
     }
 
-
-
-    public void sortByWeight(boolean order) {
-        if(ingredients.size() > 0) {
-            if(order) {
-                Collections.sort(ingredients, Vegetable.vegWeightComparatorAsc);
-
-            } else {
-                Collections.sort(ingredients, Vegetable.vegWeightComparatorDesc);
+    public ArrayList<Vegetable> findIngredientsByColor(String color) {
+        ArrayList<Vegetable> sameColorIngredients = new ArrayList<>();
+        for (Vegetable curVal : ingredients) {
+            if (curVal.getColor().equalsIgnoreCase(color)) {
+                sameColorIngredients.add(curVal);
             }
-            printIngredients();
         }
+        return sameColorIngredients;
     }
 
-    public void sortByCalories(boolean order) {
-        if(ingredients.size() > 0) {
-            if(order) {
-                Collections.sort(ingredients, Vegetable.vegCalsComparatorAsc);
-
-            } else {
-                Collections.sort(ingredients, Vegetable.vegCalsComparatorDesc);
+    public ArrayList<Vegetable> findIngredientsWithinRange(int val1, int val2) {
+        ArrayList<Vegetable> ingredientsInRange = new ArrayList<>();
+        for (Vegetable curVal : ingredients) {
+            if (curVal.getWeight() >= val1 && curVal.getWeight() <= val2) {
+                ingredientsInRange.add(curVal);
             }
-            printIngredients();
         }
+        return ingredientsInRange;
+    }
+
+    public void sortByWeight(SortingOrder order) {
+        if (order == SortingOrder.ASC) {
+            Collections.sort(ingredients, Vegetable.vegWeightComparatorAsc);
+
+        } else {
+            Collections.sort(ingredients, Vegetable.vegWeightComparatorDesc);
+        }
+        printIngredients();
+    }
+
+    public void sortByCalories(SortingOrder order) {
+        if (order == SortingOrder.ASC) {
+            Collections.sort(ingredients, Vegetable.vegCalsComparatorAsc);
+
+        } else {
+            Collections.sort(ingredients, Vegetable.vegCalsComparatorDesc);
+        }
+        printIngredients();
     }
 
 }
